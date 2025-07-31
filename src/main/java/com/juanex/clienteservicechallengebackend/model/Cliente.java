@@ -5,9 +5,9 @@ import lombok.*;
 
 @Entity
 @Table(name="clientes")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
 public class Cliente {
 
@@ -21,5 +21,4 @@ public class Cliente {
     private String tipoDocumento;
     private String numeroDocumento;
 
-
-}
+   }

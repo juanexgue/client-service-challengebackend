@@ -2,10 +2,9 @@ package com.juanex.clienteservicechallengebackend.dto;
 
 import lombok.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 public class ClienteDTO {
 
     private String nombres;
