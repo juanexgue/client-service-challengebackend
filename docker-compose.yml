@@ -10,6 +10,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
+    networks:
+      - backend
     volumes:
       - mysql-clientes-data:/var/lib/mysql
 
@@ -23,7 +25,13 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     ports:
-      - "8080:8080"
+      - "8081:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
 
 volumes:
   mysql-clientes-data:
