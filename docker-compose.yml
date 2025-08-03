@@ -3,7 +3,6 @@ version: '3.8'
 services:
   mysql-clientes:
     image: mysql:8
-    container_name: mysql-clientes
     restart: always
     environment:
       MYSQL_DATABASE: clientesdb
@@ -17,7 +16,6 @@ services:
 
   cliente-service:
     build: .
-    container_name: cliente-service
     depends_on:
       - mysql-clientes
     environment:
@@ -31,6 +29,7 @@ services:
 
 networks:
   backend:
+    name: challenge-service
     driver: bridge
 
 volumes:
