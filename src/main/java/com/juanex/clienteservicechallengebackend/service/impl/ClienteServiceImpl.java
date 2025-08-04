@@ -1,25 +1,23 @@
-package com.juanex.clienteservicechallengebackend.impl;
+package com.juanex.clienteservicechallengebackend.service.impl;
 
 import com.juanex.clienteservicechallengebackend.dto.ClienteDTO;
+import com.juanex.clienteservicechallengebackend.exeption.ClienteNoEncontradoException;
 import com.juanex.clienteservicechallengebackend.mapper.ClienteMapper;
 import com.juanex.clienteservicechallengebackend.repository.ClienteRepository;
 import com.juanex.clienteservicechallengebackend.service.ClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteServiceImpl implements ClienteService {
- private ClienteRepository repository;
- private ClienteMapper mapper;
-
-    public ClienteServiceImpl(ClienteRepository repository, ClienteMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
+ private final ClienteRepository repository;
+ private final ClienteMapper mapper;
 
     @Override
     public ClienteDTO obtenerPorCodigoUnico(String codigoEncriptado) {
         return repository.findByCodigoUnico(codigoEncriptado)
                 .map(mapper::entityToDTO)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
     }
 }
